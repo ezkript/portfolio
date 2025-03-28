@@ -1,0 +1,104 @@
+@import "tailwindcss/preflight";
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Colores primarios (gris) */
+  --color-primary-50: #f9fafb;
+  --color-primary-100: #f3f4f6;
+  --color-primary-200: #e5e7eb;
+  --color-primary-300: #d1d5db;
+  --color-primary-400: #9ca3af;
+  --color-primary-500: #6b7280;
+  --color-primary-600: #4b5563;
+  --color-primary-700: #374151;
+  --color-primary-800: #1f2937;
+  --color-primary-900: #111827;
+
+  /* Colores secundarios (gris más oscuro) */
+  --color-secondary-50: #f8fafc;
+  --color-secondary-100: #f1f5f9;
+  --color-secondary-200: #e2e8f0;
+  --color-secondary-300: #cbd5e1;
+  --color-secondary-400: #94a3b8;
+  --color-secondary-500: #64748b;
+  --color-secondary-600: #475569;
+  --color-secondary-700: #334155;
+  --color-secondary-800: #1e293b;
+  --color-secondary-900: #0f172a;
+
+  /* Colores de fondo */
+  --color-background-light: #ffffff;
+  --color-background-dark: #111827;
+
+  /* Colores de texto */
+  --color-text-light-primary: #111827;
+  --color-text-light-secondary: #4b5563;
+  --color-text-dark-primary: #ffffff;
+  --color-text-dark-secondary: #9ca3af;
+
+  /* Colores de superficie */
+  --color-surface-light: #f3f4f6;
+  --color-surface-dark: #1f2937;
+}
+
+/* Estilos base */
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-background-light dark:bg-background-dark text-text-light-primary dark:text-text-dark-primary transition-colors duration-300;
+  }
+
+  /* Transiciones suaves para elementos que cambian con el tema */
+  * {
+    @apply transition-colors duration-300;
+  }
+}
+
+/* Componentes personalizados */
+@layer components {
+  .btn-primary {
+    @apply bg-primary-800 text-white px-6 py-3 rounded-lg hover:bg-primary-900 
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 
+           dark:focus:ring-offset-background-dark transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply border border-primary-800 text-primary-800 dark:text-primary-200 
+           px-6 py-3 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 
+           dark:focus:ring-offset-background-dark transition-all duration-200;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold text-center mb-12 text-text-light-primary dark:text-text-dark-primary;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .nav-link {
+    @apply text-text-light-secondary hover:text-text-light-primary 
+           dark:text-text-dark-secondary dark:hover:text-text-dark-primary 
+           px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white dark:bg-surface-dark rounded-xl shadow-lg 
+           hover:shadow-xl transition-all duration-200;
+  }
+
+  .tag {
+    @apply px-3 py-1 bg-primary-100 dark:bg-primary-900/30 
+           text-primary-800 dark:text-primary-200 rounded-full text-sm 
+           transition-colors duration-200;
+  }
+}
