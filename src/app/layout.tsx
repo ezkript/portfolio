@@ -6,8 +6,17 @@ import { LanguageProvider } from "../context/LanguageContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Tu Portfolio",
+  title: "Gonzalo Balboa - Portfolio",
   description: "Portfolio personal de desarrollo web",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      {
+        url: '/logo.jpg',
+        type: 'image/jpg',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

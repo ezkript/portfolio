@@ -1,0 +1,16 @@
+{
+  "name": "Gonzalo Balboa - Portfolio",
+  "short_name": "GB Portfolio",
+  "description": "Portfolio personal de desarrollo web de Gonzalo Balboa",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#1e40af",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "sizes": "32x32",
+      "type": "image/jpg"
+    }
+  ]
+}
