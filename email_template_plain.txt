@@ -1,0 +1,33 @@
+🚀 NUEVO MENSAJE DESDE PORTFOLIO
+================================
+
+¡Hola {{to_name}}!
+
+Has recibido un nuevo mensaje desde tu portfolio web. Aquí están los detalles:
+
+📋 INFORMACIÓN DEL CONTACTO
+---------------------------
+Nombre: {{from_name}}
+Email: {{from_email}}
+Fecha: {{date}}
+
+💬 MENSAJE
+----------
+{{message}}
+
+⚡ RESPUESTA RÁPIDA
+------------------
+Para responder rápidamente, puedes hacer clic en el email del remitente o usar la función "Responder" de tu cliente de email.
+
+📧 CONTACTO DIRECTO
+------------------
+Email del remitente: {{from_email}}
+
+---
+Gonzalo Balboa - Full Stack Developer
+💻 Creando soluciones a través del código
+
+Este mensaje fue enviado automáticamente desde tu portfolio web.
+Portfolio: https://tu-portfolio.com
+
+Tecnologías del portfolio: React | Next.js | TypeScript | Tailwind CSS 
