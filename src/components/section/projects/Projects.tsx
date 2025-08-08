@@ -5,7 +5,8 @@ import { useParallax } from "@/hooks/useParallax";
 import { Calendar, Sparkles, Filter } from "lucide-react";
 import { Github, X, Eye, Lock, Code2 } from "lucide-react";
 import Image from "next/image";
-import { projectsData } from "./Projects.helper";
+import { getProjectsData } from "./Projects.helper";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Projects = () => {
   const scrollY = useParallax();
@@ -14,13 +15,15 @@ const Projects = () => {
     show: false, 
     message: "" 
   });
+  const { t } = useLanguage();
+  const projectsData = getProjectsData(t);
   const projects = projectsData.projects;
 
   const categories = useMemo(() => [
-    { id: "all", label: "Todos", count: projects.length },
-    { id: "fullstack", label: "Full Stack", count: projects.filter(p => p.category === "fullstack").length },
-    { id: "frontend", label: "Frontend", count: projects.filter(p => p.category === "frontend").length }
-  ], [projects]);
+    { id: "all", label: t('projects.filters.all'), count: projects.length },
+    { id: "fullstack", label: t('projects.filters.fullstack'), count: projects.filter(p => p.category === "fullstack").length },
+    { id: "frontend", label: t('projects.filters.frontend'), count: projects.filter(p => p.category === "frontend").length }
+  ], [projects, t]);
 
   const filteredProjects = activeFilter === "all" 
     ? projects 
@@ -136,7 +139,7 @@ const Projects = () => {
                       ? "bg-green-900/80 text-green-200 border border-green-700"
                       : "bg-blue-900/80 text-blue-200 border border-blue-700"
                   }`}>
-                    {project.status}
+                    {project.status === "Activo" ? t('projects.status.active') : t('projects.status.completed')}
                   </span>
                 </div>
                 <div className="absolute inset-0 bg-gray-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">

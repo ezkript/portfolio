@@ -4,10 +4,13 @@ import LightEffects from "@/components/global/lighteffects/LightEffects";
 import { useParallax } from "@/hooks/useParallax";
 import { Calendar, MapPin, Award, Zap } from "lucide-react";
 import { GraduationCap, Briefcase, Code2 } from "lucide-react";
-import { aboutData } from "./About.helper";
+import { getAboutData } from "./About.helper";
+import { useLanguage } from "@/context/LanguageContext";
 
 const About = () => {
   const scrollY = useParallax();
+  const { t } = useLanguage();
+  const aboutData = getAboutData(t);
 
   return (
     <section id="sobre-mi" className="py-20 relative overflow-hidden bg-gradient-to-b from-black via-gray-950 to-gray-900">
@@ -39,7 +42,7 @@ const About = () => {
                 <div className="w-10 h-10 bg-blue-500/30 rounded-full flex items-center justify-center">
                   <GraduationCap className="w-5 h-5 text-blue-300" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Educación</h3>
+                <h3 className="text-2xl font-bold text-white">{t('about.education.title')}</h3>
               </div>
               <div className="space-y-4">
                 <h4 className="text-xl font-semibold text-blue-200">
@@ -67,7 +70,7 @@ const About = () => {
                 <div className="w-10 h-10 bg-gray-600/40 rounded-full flex items-center justify-center">
                   <Briefcase className="w-5 h-5 text-gray-300" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Experiencia Profesional</h3>
+                <h3 className="text-2xl font-bold text-white">{t('about.experience.title')}</h3>
               </div>
               <div className="space-y-6">
                 {aboutData.experience.map((exp, index) => (
@@ -84,7 +87,7 @@ const About = () => {
                         <h4 className="text-lg font-semibold text-white">{exp.position}</h4>
                         {exp.status === "Actual" ? (
                           <span className="text-sm text-green-400 bg-green-900/30 px-3 py-1 rounded-full">
-                            {exp.status}
+                            {t('about.experience.current')}
                           </span>
                         ) : null}
                       </div>
@@ -105,7 +108,7 @@ const About = () => {
             <div className="w-10 h-10 bg-purple-500/30 rounded-full flex items-center justify-center">
               <Award className="w-5 h-5 text-purple-300" />
             </div>
-            <h3 className="text-2xl font-bold text-white">Habilidades</h3>
+            <h3 className="text-2xl font-bold text-white">{t('about.skills.title')}</h3>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {aboutData.skills.map((skillCategory, index) => {
@@ -128,7 +131,7 @@ const About = () => {
             })}
           </div>
           <div className="mt-8 pt-6 border-t border-gray-700/30">
-            <h4 className="text-lg font-semibold text-gray-200 mb-4">Idiomas</h4>
+            <h4 className="text-lg font-semibold text-gray-200 mb-4">{t('about.languages.title')}</h4>
             <div className="flex gap-4">
               {aboutData.languages.map((language, index) => (
                 <span key={language.name} className={`px-4 py-2 rounded-lg font-medium border ${

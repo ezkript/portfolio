@@ -1,41 +1,41 @@
 import { ContactData } from "./Contact.types";
 
-export const contactData: ContactData = {
-    title: "Contacto",
-    subtitle: "¿Te interesa trabajar juntos o tienes alguna pregunta? Conversemos sobre tu proyecto.",
+export const getContactData = (t: (key: string) => string): ContactData => ({
+    title: t('contact.title'),
+    subtitle: t('contact.subtitle'),
     contactInfo: {
       email: "gonzalobalboadev@gmail.com",
       phone: "+54 9 3865 75-3085",
       location: "Tucumán, Argentina",
-      availability: "Disponible para proyectos freelance y oportunidades laborales"
+      availability: t('contact.info.availability.text')
     },
     socialLinks: [
       {
         name: "LinkedIn",
         url: "https://linkedin.com/in/ezkript",
         icon: "in",
-        description: "Conectemos profesionalmente"
+        description: t('contact.social.linkedin.description')
       },
       {
         name: "GitHub",
         url: "https://github.com/ezkript",
         icon: "github",
-        description: "Revisa mis proyectos"
+        description: t('contact.social.github.description')
       }
     ],
     formLabels: {
-      name: "Nombre",
-      email: "Email",
-      message: "Mensaje"
+      name: t('contact.form.name'),
+      email: t('contact.form.email'),
+      message: t('contact.form.message')
     },
     formPlaceholders: {
-      name: "Tu nombre completo",
-      email: "tu@email.com",
-      message: "Cuéntame sobre tu proyecto o consulta..."
+      name: t('contact.form.name.placeholder'),
+      email: t('contact.form.email.placeholder'),
+      message: t('contact.form.message.placeholder')
     },
     submitButton: {
-      default: "Enviar Mensaje",
-      loading: "Enviando..."
+      default: t('contact.form.submit'),
+      loading: t('contact.form.submitting')
     }
-  };
+  });
   

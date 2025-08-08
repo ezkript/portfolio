@@ -5,10 +5,13 @@ import { Mail, MapPin, Phone, Clock, Github } from "lucide-react";
 import LightEffects from "@/components/global/lighteffects/LightEffects";
 import { useParallax } from "@/hooks/useParallax";
 import { sendContactEmail, validateEmailConfig, type ContactFormData } from "@/services/emailService";
-import { contactData } from "./Contact.helper";
+import { getContactData } from "./Contact.helper";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Contact = () => {
   const scrollY = useParallax();
+  const { t } = useLanguage();
+  const contactData = getContactData(t);
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -27,11 +30,11 @@ const Contact = () => {
     
     try {
       if (!validateEmailConfig()) {
-        throw new Error("El servicio de email no está configurado correctamente");
+        throw new Error(t('contact.form.error.config'));
       }
 
       if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-        throw new Error("Todos los campos son obligatorios");
+        throw new Error(t('contact.form.error.required'));
       }
 
       const success = await sendContactEmail(formData);
@@ -39,7 +42,7 @@ const Contact = () => {
       if (success) {
         setNotification({
           show: true,
-          message: "¡Mensaje enviado con éxito! Te responderé lo antes posible.",
+          message: t('contact.form.success'),
           type: "success"
         });
         setFormData({ name: "", email: "", message: "" });
@@ -48,13 +51,13 @@ const Contact = () => {
           setNotification({ show: false, message: "", type: "success" });
         }, 5000);
       } else {
-        throw new Error("Error al enviar el mensaje");
+        throw new Error(t('contact.form.error.send'));
       }
     } catch (error) {
       console.error("Error en el envío:", error);
       setNotification({
         show: true,
-        message: error instanceof Error ? error.message : "Error desconocido al enviar el mensaje",
+        message: error instanceof Error ? error.message : t('contact.form.error.unknown'),
         type: "error"
       });
       
@@ -137,7 +140,7 @@ const Contact = () => {
                 <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
                   <Mail className="w-4 h-4 text-blue-400" />
                 </div>
-                Información de Contacto
+                {t('contact.info.title')}
               </h3>
               <div className="space-y-6">
                 <div className="group flex items-start space-x-4 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
@@ -147,7 +150,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium text-white mb-1">Email</h4>
+                    <h4 className="text-lg font-medium text-white mb-1">{t('contact.info.email')}</h4>
                     <p className="text-blue-300">{contactData.contactInfo.email}</p>
                   </div>
                 </div>
@@ -158,7 +161,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium text-white mb-1">Teléfono</h4>
+                    <h4 className="text-lg font-medium text-white mb-1">{t('contact.info.phone')}</h4>
                     <p className="text-blue-300">{contactData.contactInfo.phone}</p>
                   </div>
                 </div>
@@ -169,7 +172,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium text-white mb-1">Ubicación</h4>
+                    <h4 className="text-lg font-medium text-white mb-1">{t('contact.info.location')}</h4>
                     <p className="text-blue-300">{contactData.contactInfo.location}</p>
                   </div>
                 </div>
@@ -180,7 +183,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium text-white mb-1">Disponibilidad</h4>
+                    <h4 className="text-lg font-medium text-white mb-1">{t('contact.info.availability')}</h4>
                     <p className="text-blue-300">{contactData.contactInfo.availability}</p>
                   </div>
                 </div>
@@ -191,7 +194,7 @@ const Contact = () => {
                 <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
                   <Phone className="w-4 h-4 text-blue-400" />
                 </div>
-                Redes Profesionales
+                {t('contact.social.title')}
               </h3>
               <div className="space-y-4">
                 {contactData.socialLinks.map((social) => (
@@ -227,7 +230,7 @@ const Contact = () => {
               <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
                 <Mail className="w-4 h-4 text-blue-400" />
               </div>
-              Envíame un Mensaje
+              {t('contact.form.title')}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>

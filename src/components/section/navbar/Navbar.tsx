@@ -1,10 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
-  const [language, setLanguage] = useState("es");
   const [scrolled, setScrolled] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +60,7 @@ const Navbar = () => {
               : "text-white/80 hover:text-white"
           }`}
         >
-          Inicio
+          {t('nav.home')}
         </button>
         <button
           onClick={() => scrollToSection("sobre-mi")}
@@ -69,7 +70,7 @@ const Navbar = () => {
               : "text-white/80 hover:text-white"
           }`}
         >
-          Sobre Mí
+          {t('nav.about')}
         </button>
         <button
           onClick={() => scrollToSection("proyectos")}
@@ -79,7 +80,7 @@ const Navbar = () => {
               : "text-white/80 hover:text-white"
           }`}
         >
-          Proyectos
+          {t('nav.projects')}
         </button>
         <button
           onClick={() => scrollToSection("contacto")}
@@ -89,7 +90,7 @@ const Navbar = () => {
               : "text-white/80 hover:text-white"
           }`}
         >
-          Contacto
+          {t('nav.contact')}
         </button>
         <div className="w-px h-4 bg-white/30 mx-2"></div>
         <button

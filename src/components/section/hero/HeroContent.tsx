@@ -4,12 +4,14 @@ import { SiMongodb, SiNextdotjs, SiTailwindcss, SiGit } from "react-icons/si";
 import { SiReact, SiNodedotjs, SiTypescript, SiDocker } from "react-icons/si";
 import { HiFolder, HiDownload } from "react-icons/hi";
 import { CheckCircle, X } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const HeroContent = () => {
   const [notification, setNotification] = useState<{ show: boolean; message: string }>({ 
     show: false, 
     message: "" 
   });
+  const { t } = useLanguage();
 
   const handleDownloadCV = () => {
     try {
@@ -22,7 +24,7 @@ const HeroContent = () => {
 
       setNotification({
         show: true,
-        message: "¡CV descargado correctamente! Revisa tu carpeta de descargas."
+        message: t('hero.cv.success')
       });
       
       setTimeout(() => {
@@ -32,7 +34,7 @@ const HeroContent = () => {
       console.error("Error al descargar CV:", error);
       setNotification({
         show: true,
-        message: "Error al descargar el CV. Por favor, inténtalo de nuevo."
+        message: t('hero.cv.error')
       });
       
       setTimeout(() => {
@@ -77,14 +79,14 @@ const HeroContent = () => {
         </div>
       ) : null}
       <h1 className="text-3xl lg:text-5xl font-bold text-white mb-8 leading-tight">
-        ¡Hola!
+        {t('hero.greeting')}
       </h1>
         <p className="text-lg lg:text-xl text-blue-200 mb-4">
-          Soy Gonzalo, resuelvo problemas complejos a través del código.
+          {t('hero.description')}
         </p>
       <div className="mb-8">
         <h2 className="text-lg lg:text-xl font-medium mb-6 text-blue-200">
-          Stack tecnológico
+          {t('hero.tech.stack')}
         </h2>
         <div className="grid grid-cols-4 gap-4">
           {technologies.map((tech) => (
@@ -115,14 +117,14 @@ const HeroContent = () => {
           className="group px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-base font-medium rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-900 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2"
         >
           <HiFolder className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-          Ver proyectos
+          {t('hero.cta')}
         </button>
         <button 
           onClick={handleDownloadCV}
           className="group px-6 py-3 border-2 border-white/80 text-white text-base font-medium rounded-xl hover:bg-white hover:text-blue-900 hover:border-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 text-center shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2 justify-center backdrop-blur-sm"
         >
           <HiDownload className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-          Descargar CV
+          {t('hero.cv.download')}
         </button>
       </div>
     </div>
