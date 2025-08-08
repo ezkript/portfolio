@@ -114,7 +114,7 @@ const HeroContent = () => {
               element.scrollIntoView({ behavior: "smooth" });
             }
           }}
-          className="group px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-base font-medium rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-900 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2"
+          className="group px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-base font-medium rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-900 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2"
         >
           <HiFolder className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
           {t('hero.cta')}

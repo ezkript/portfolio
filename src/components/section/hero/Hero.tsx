@@ -9,7 +9,7 @@ const Hero = () => {
   const scrollY = useParallax();
 
   return (
-    <section id="hero" className="bg-gradient-to-b from-blue-900 via-blue-950 to-black min-h-screen flex items-center relative overflow-hidden">
+    <section id="hero" className="bg-gradient-to-b from-blue-900 via-blue-950 to-black min-h-screen flex items-center relative overflow-hidden pt-16 md:pt-20">
       <div className="absolute inset-0 bg-black/20"></div>
       <div 
         className="absolute inset-0"

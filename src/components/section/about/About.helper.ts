@@ -39,19 +39,19 @@ export const getAboutData = (t: (key: string) => string): AboutData => ({
     skills: [
       {
         name: t('about.skills.languages'),
-        skills: ["Python", "TypeScript", "JavaScript", "Java", "C++"]
+        skills: ["TypeScript", "JavaScript", "Python", "Java", "C++"]
       },
       {
         name: t('about.skills.frameworks'),
-        skills: ["React.js", "Next.js", "Nest.js", "Node.js"]
+        skills: ["React + Next.js", "Express.js", "Node.js"]
       },
       {
         name: t('about.skills.databases'),
-        skills: ["MySQL", "MongoDB", "Firebase", "MariaDB"]
+        skills: ["MySQL", "MongoDB", "PostgreSQL", "Supabase"]
       },
       {
         name: t('about.skills.tools'),
-        skills: ["Git", "Docker", "Linux", "Jest"]
+        skills: ["Git", "Docker", "Linux", "TailwindCSS", "tRPC"]
       }
     ],
     languages: [

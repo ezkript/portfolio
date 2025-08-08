@@ -93,7 +93,7 @@ const About = () => {
                       </div>
                       <p className="text-blue-300 font-medium mb-2">{exp.company}</p>
                       <p className="text-gray-400 text-sm mb-3">{exp.period}</p>
-                      <p className="text-gray-300 leading-relaxed">
+                      <p className="text-gray-300 leading-relaxed hyphens-auto">
                         {exp.description}
                       </p>
                     </div>
@@ -105,8 +105,8 @@ const About = () => {
         </div>
         <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 bg-purple-500/30 rounded-full flex items-center justify-center">
-              <Award className="w-5 h-5 text-purple-300" />
+            <div className="w-10 h-10 bg-blue-500/30 rounded-full flex items-center justify-center">
+              <Award className="w-5 h-5 text-blue-300" />
             </div>
             <h3 className="text-2xl font-bold text-white">{t('about.skills.title')}</h3>
           </div>
