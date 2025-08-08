@@ -38,9 +38,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       // Hero
       'hero.title': 'Gonzalo Balboa',
       'hero.subtitle': 'Backend Developer',
-      'hero.description': 'Me gusta resolver problemas y escribir código que funcione bien.',
+      'hero.description': 'Desarrollador Web Full Stack, estudiante de ingeniería en sistemas.',
       'hero.cta': 'Ver Proyectos',
-      'hero.greeting': '¡Hola!',
+      'hero.greeting': '¡Hola! Soy Gonzalo',
       'hero.tech.stack': 'Stack tecnológico',
       'hero.cv.download': 'Descargar CV',
       'hero.cv.success': '¡CV descargado correctamente! Revisa tu carpeta de descargas.',
@@ -163,9 +163,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       // Hero
       'hero.title': 'Gonzalo Balboa',
       'hero.subtitle': 'Backend Developer',
-      'hero.description': 'I like solving problems and writing code that works well.',
+      'hero.description': 'Full Stack Web Developer, Systems Engineering student.',
       'hero.cta': 'View Projects',
-      'hero.greeting': 'Hello!',
+      'hero.greeting': 'Hello! I\'m Gonzalo',
       'hero.tech.stack': 'Tech Stack',
       'hero.cv.download': 'Download CV',
       'hero.cv.success': 'CV downloaded successfully! Check your downloads folder.',

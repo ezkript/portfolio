@@ -90,13 +90,13 @@ const Projects = () => {
           </p>
         </div>
         <div className="flex justify-center mb-8 md:mb-12 px-4">
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-1.5 md:p-2 border border-gray-700/50 w-full max-w-md md:max-w-none">
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-2 border border-gray-700/50 w-full max-w-md md:min-w-[400px]">
             <div className="flex gap-1 md:gap-2">
               {categories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setActiveFilter(category.id)}
-                  className={`flex-1 md:flex-none px-3 md:px-6 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-1 md:gap-2 ${
+                  className={`flex-1 md:flex-initial px-3 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-1 md:gap-2 ${
                     activeFilter === category.id
                       ? "bg-blue-600 text-white shadow-lg transform scale-105"
                       : "text-gray-400 hover:text-white hover:bg-gray-800/50"

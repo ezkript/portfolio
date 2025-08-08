@@ -10,12 +10,7 @@ export const metadata: Metadata = {
   description: "Portfolio personal de desarrollo web",
   manifest: "/site.webmanifest",
   icons: {
-    icon: [
-      {
-        url: '/logo.jpg',
-        type: 'image/jpg',
-      },
-    ],
+    icon: '/favicon.ico',
   },
 };
 
@@ -26,6 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+      </head>
       <body className={inter.className}>
         <LanguageProvider>
           <main>{children}</main>
