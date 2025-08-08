@@ -1,16 +1,7 @@
 "use client";
-
-import { useState } from "react";
-import { 
-  SiReact, 
-  SiNodedotjs, 
-  SiTypescript, 
-  SiMongodb, 
-  SiNextdotjs,
-  SiTailwindcss,
-  SiGit,
-  SiDocker
-} from "react-icons/si";
+import React, { useState } from "react";
+import { SiMongodb, SiNextdotjs, SiTailwindcss, SiGit } from "react-icons/si";
+import { SiReact, SiNodedotjs, SiTypescript, SiDocker } from "react-icons/si";
 import { HiFolder, HiDownload } from "react-icons/hi";
 import { CheckCircle, X } from "lucide-react";
 
@@ -22,27 +13,23 @@ const HeroContent = () => {
 
   const handleDownloadCV = () => {
     try {
-      // Crear un enlace temporal para la descarga
       const link = document.createElement('a');
       link.href = '/cv.pdf';
       link.download = 'GonzaloBalboa_DesarrolladorFullStack.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
-      // Mostrar notificación de éxito
+
       setNotification({
         show: true,
         message: "¡CV descargado correctamente! Revisa tu carpeta de descargas."
       });
       
-      // Auto-hide después de 4 segundos
       setTimeout(() => {
         setNotification({ show: false, message: "" });
       }, 4000);
     } catch (error) {
       console.error("Error al descargar CV:", error);
-      // Mostrar notificación de error si algo falla
       setNotification({
         show: true,
         message: "Error al descargar el CV. Por favor, inténtalo de nuevo."
@@ -67,8 +54,7 @@ const HeroContent = () => {
 
   return (
     <div className="flex-1 max-w-2xl text-center lg:text-left">
-      {/* Notificación */}
-      {notification.show && (
+      {notification.show ? (
         <div className="fixed top-4 right-4 z-50 max-w-sm">
           <div className="bg-gray-900/95 backdrop-blur-sm border border-green-500/50 rounded-xl p-4 shadow-2xl transform animate-slide-in-right">
             <div className="flex items-start gap-3">
@@ -89,20 +75,17 @@ const HeroContent = () => {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
       <h1 className="text-3xl lg:text-5xl font-bold text-white mb-8 leading-tight">
         ¡Hola!
       </h1>
-      
-              <p className="text-lg lg:text-xl text-blue-200 mb-4">
+        <p className="text-lg lg:text-xl text-blue-200 mb-4">
           Soy Gonzalo, resuelvo problemas complejos a través del código.
         </p>
-      
       <div className="mb-8">
         <h2 className="text-lg lg:text-xl font-medium mb-6 text-blue-200">
           Stack tecnológico
         </h2>
-        
         <div className="grid grid-cols-4 gap-4">
           {technologies.map((tech) => (
             <div
@@ -116,15 +99,11 @@ const HeroContent = () => {
               <span className="text-xs text-gray-400 mt-2 group-hover:text-gray-300 transition-colors duration-300">
                 {tech.name}
               </span>
-              
-              {/* Efecto de brillo en hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
             </div>
           ))}
         </div>
       </div>
-      
-      {/* Botones CTA */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
         <button 
           onClick={() => {
@@ -138,10 +117,9 @@ const HeroContent = () => {
           <HiFolder className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
           Ver proyectos
         </button>
-        
         <button 
           onClick={handleDownloadCV}
-          className="group px-6 py-3 border-2 border-white/80 text-white text-base font-medium rounded-xl hover:bg-white hover:text-blue-900 hover:border-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 text-center inline-block shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2 justify-center backdrop-blur-sm"
+          className="group px-6 py-3 border-2 border-white/80 text-white text-base font-medium rounded-xl hover:bg-white hover:text-blue-900 hover:border-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 text-center shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2 justify-center backdrop-blur-sm"
         >
           <HiDownload className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
           Descargar CV

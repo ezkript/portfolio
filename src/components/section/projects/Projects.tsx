@@ -1,18 +1,11 @@
 "use client";
-
-import { useState } from "react";
-import LightEffects from "./LightEffects";
-import { useParallax } from "../hooks/useParallax";
-import { 
-  Github, 
-  Calendar,
-  Code2,
-  Sparkles,
-  Filter,
-  Eye,
-  Lock,
-  X
-} from "lucide-react";
+import React, { useState, useMemo } from "react";
+import LightEffects from "@/components/global/lighteffects/LightEffects";
+import { useParallax } from "@/hooks/useParallax";
+import { Calendar, Sparkles, Filter } from "lucide-react";
+import { Github, X, Eye, Lock, Code2 } from "lucide-react";
+import Image from "next/image";
+import { projectsData } from "./Projects.helper";
 
 const Projects = () => {
   const scrollY = useParallax();
@@ -21,41 +14,13 @@ const Projects = () => {
     show: false, 
     message: "" 
   });
-  const projects = [
-    {
-      id: 1,
-      title: "TickPass",
-      subtitle: "Plataforma de Administración de Eventos",
-      description: "Sistema completo para gestión de eventos con funcionalidades avanzadas de comunicación en tiempo real y procesamiento de pagos.",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop&crop=center",
-      technologies: ["React", "Next.js", "TypeScript", "Firebase", "tRPC"],
-      category: "fullstack",
-      status: "Activo",
-      period: "Nov 2024 - Ago 2025",
-      highlights: ["Tiempo Real", "Pagos", "Eventos"],
-      github: "private",
-      demo: "#"
-    },
-    {
-      id: 2,
-      title: "PixelBox",
-      subtitle: "Sistema de Gestión de Turnos",
-      description: "Solución integrada para hospitales y clínicas con capacidades multimedia y gestión de turnos en tiempo real.",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&crop=center",
-      technologies: ["React", "Next.js", "MongoDB", "WebSocket", "Tailwind"],
-      category: "fullstack",
-      status: "Completado",
-      period: "May 2024 - Sep 2024",
-      highlights: ["WebSocket", "Multimedia", "Hospitalario"],
-      github: "private",
-      demo: "#"
-    }
-  ];
+  const projects = projectsData.projects;
 
-  const categories = [
+  const categories = useMemo(() => [
     { id: "all", label: "Todos", count: projects.length },
-    { id: "fullstack", label: "Full Stack", count: projects.filter(p => p.category === "fullstack").length }
-  ];
+    { id: "fullstack", label: "Full Stack", count: projects.filter(p => p.category === "fullstack").length },
+    { id: "frontend", label: "Frontend", count: projects.filter(p => p.category === "frontend").length }
+  ], [projects]);
 
   const filteredProjects = activeFilter === "all" 
     ? projects 
@@ -65,10 +30,9 @@ const Projects = () => {
     if (githubUrl === "private") {
       setNotification({
         show: true,
-        message: `El repositorio de ${projectTitle} es privado por decisión de la empresa.`
+        message: projectsData.notificationMessage.replace("{projectTitle}", projectTitle)
       });
       
-      // Auto-hide después de 4 segundos
       setTimeout(() => {
         setNotification({ show: false, message: "" });
       }, 4000);
@@ -79,8 +43,7 @@ const Projects = () => {
 
   return (
     <section id="proyectos" className="py-20 relative overflow-hidden bg-gradient-to-b from-gray-900 via-gray-950 to-black">
-      {/* Notificación */}
-      {notification.show && (
+      {notification.show ? (
         <div className="fixed top-4 right-4 z-50 max-w-sm">
           <div className="bg-gray-900/95 backdrop-blur-sm border border-orange-500/50 rounded-xl p-4 shadow-2xl transform animate-slide-in-right">
             <div className="flex items-start gap-3">
@@ -101,34 +64,28 @@ const Projects = () => {
             </div>
           </div>
         </div>
-      )}
-
-      {/* Efectos de luces con parallax */}
+      ) : null}
       <div 
         className="absolute inset-0"
         style={{ transform: `translateY(${scrollY * 0.2}px)` }}
       >
         <LightEffects variant="section" colorScheme="blue" />
       </div>
-      
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header con iconos */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
               <Code2 className="w-6 h-6 text-blue-400" />
             </div>
-            <h2 className="text-4xl font-bold text-white">Proyectos</h2>
+            <h2 className="text-4xl font-bold text-white">{projectsData.title}</h2>
             <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
               <Sparkles className="w-6 h-6 text-blue-400" />
             </div>
           </div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Soluciones que he desarrollado aplicando diferentes tecnologías y enfoques.
+            {projectsData.subtitle}
           </p>
         </div>
-
-        {/* Filtros animados */}
         <div className="flex justify-center mb-12">
           <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-2 border border-gray-700/50">
             <div className="flex gap-2">
@@ -156,8 +113,6 @@ const Projects = () => {
             </div>
           </div>
         </div>
-
-        {/* Grid de proyectos */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           {filteredProjects.map((project, index) => (
             <div
@@ -165,16 +120,16 @@ const Projects = () => {
               className="group relative bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/30 hover:border-blue-500/50 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Imagen con overlay */}
               <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
+                <Image
+                  src={project.staticImage ? project.staticImage : project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  width={500}
+                  height={500}
+                  unoptimized={project.image?.startsWith("http")}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent"></div>
-                
-                {/* Badge de estado */}
                 <div className="absolute top-4 right-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                     project.status === "Activo"
@@ -184,8 +139,6 @@ const Projects = () => {
                     {project.status}
                   </span>
                 </div>
-
-                {/* Overlay con acciones */}
                 <div className="absolute inset-0 bg-gray-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                   <a
                     href={project.demo}
@@ -205,8 +158,6 @@ const Projects = () => {
                   </button>
                 </div>
               </div>
-
-              {/* Contenido */}
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div>
@@ -218,12 +169,9 @@ const Projects = () => {
                     {project.period}
                   </div>
                 </div>
-
                 <p className="text-gray-300 mb-4 leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
-
-                {/* Highlights */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.highlights.map((highlight) => (
                     <span
@@ -234,8 +182,6 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-
-                {/* Tecnologías */}
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.slice(0, 4).map((tech) => (
                     <span
@@ -245,28 +191,23 @@ const Projects = () => {
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 4 && (
+                  {project.technologies.length > 4 ? (
                     <span className="px-3 py-1 bg-gray-800/60 text-gray-400 rounded-lg text-xs font-medium border border-gray-700/50">
                       +{project.technologies.length - 4}
                     </span>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* CTA final */}
         <div className="text-center">
           <div className="bg-gradient-to-r from-blue-900/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-700/30">
-            <h3 className="text-2xl font-bold text-white mb-4">¿Te interesa trabajar juntos?</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">{projectsData.ctaSection.title}</h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Estos proyectos representan mi experiencia y enfoque. Si tienes una idea o necesitas ayuda con un proyecto, conversemos.
+              {projectsData.ctaSection.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                Ver Más Proyectos
-              </button>
               <button
                 onClick={() => {
                   const element = document.getElementById("contacto");
@@ -274,7 +215,7 @@ const Projects = () => {
                 }}
                 className="px-8 py-4 border-2 border-blue-500/50 text-blue-200 font-medium rounded-xl hover:bg-blue-500/10 hover:border-blue-400 transition-all duration-300"
               >
-                Contactar
+                {projectsData.ctaSection.buttons.contact}
               </button>
             </div>
           </div>

@@ -1,11 +1,10 @@
 "use client";
+import React from "react";
+import { LightEffectsProps as Props } from "./LightEffects.types";
 
-interface LightEffectsProps {
-  variant?: "hero" | "section";
-  colorScheme?: "blue" | "purple" | "cyan" | "mixed";
-}
+const LightEffects = (props: Props) => {
+  const { variant, colorScheme } = props;
 
-const LightEffects = ({ variant = "section", colorScheme = "mixed" }: LightEffectsProps) => {
   const getColors = () => {
     switch (colorScheme) {
       case "blue":
@@ -40,17 +39,12 @@ const LightEffects = ({ variant = "section", colorScheme = "mixed" }: LightEffec
   if (variant === "hero") {
     return (
       <div className="absolute inset-0">
-        {/* Luces principales grandes */}
         <div className={`absolute top-1/4 left-1/4 w-96 h-96 ${colors.primary} rounded-full blur-3xl animate-slow-pulse`}></div>
         <div className={`absolute top-1/3 right-1/3 w-80 h-80 ${colors.secondary} rounded-full blur-3xl animate-slow-pulse`} style={{ animationDelay: '1s' }}></div>
         <div className={`absolute bottom-1/4 left-1/3 w-72 h-72 ${colors.accent} rounded-full blur-3xl animate-slow-pulse`} style={{ animationDelay: '2s' }}></div>
-        
-        {/* Luces flotantes medianas */}
         <div className={`absolute top-20 right-20 w-32 h-32 ${colors.accent} rounded-full blur-2xl animate-slow-bounce`} style={{ animationDelay: '0.5s' }}></div>
         <div className={`absolute bottom-32 right-1/4 w-24 h-24 ${colors.secondary} rounded-full blur-2xl animate-slow-bounce`} style={{ animationDelay: '1.5s' }}></div>
         <div className={`absolute top-1/2 left-20 w-28 h-28 ${colors.primary} rounded-full blur-2xl animate-slow-bounce`} style={{ animationDelay: '2.5s' }}></div>
-        
-        {/* Rayos de luz radiales */}
         <div className="absolute top-0 left-1/2 w-1 h-full bg-gradient-to-b from-blue-300/10 via-transparent to-transparent rotate-12 blur-sm"></div>
         <div className="absolute top-0 left-1/3 w-1 h-full bg-gradient-to-b from-purple-300/8 via-transparent to-transparent rotate-6 blur-sm"></div>
         <div className="absolute top-0 right-1/3 w-1 h-full bg-gradient-to-b from-cyan-300/8 via-transparent to-transparent -rotate-6 blur-sm"></div>
@@ -60,15 +54,10 @@ const LightEffects = ({ variant = "section", colorScheme = "mixed" }: LightEffec
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Luces principales más sutiles para secciones */}
       <div className={`absolute top-20 left-10 w-64 h-64 ${colors.primary} rounded-full blur-3xl animate-slow-pulse`}></div>
       <div className={`absolute bottom-20 right-10 w-48 h-48 ${colors.secondary} rounded-full blur-3xl animate-slow-pulse`} style={{ animationDelay: '1.5s' }}></div>
-      
-      {/* Luces flotantes pequeñas */}
       <div className={`absolute top-32 right-1/4 w-20 h-20 ${colors.accent} rounded-full blur-2xl animate-slow-bounce`} style={{ animationDelay: '0.8s' }}></div>
       <div className={`absolute bottom-32 left-1/4 w-16 h-16 ${colors.primary} rounded-full blur-2xl animate-slow-bounce`} style={{ animationDelay: '2s' }}></div>
-      
-      {/* Orbes diminutos */}
       <div className={`absolute top-16 left-1/3 w-3 h-3 ${colors.accent.replace('/15', '/40').replace('/10', '/40').replace('/8', '/40').replace('/12', '/40')} rounded-full animate-slow-pulse blur-sm`}></div>
       <div className={`absolute bottom-16 right-1/3 w-2 h-2 ${colors.secondary.replace('/15', '/40').replace('/10', '/40').replace('/8', '/40').replace('/12', '/40')} rounded-full animate-slow-pulse blur-sm`} style={{ animationDelay: '1s' }}></div>
     </div>

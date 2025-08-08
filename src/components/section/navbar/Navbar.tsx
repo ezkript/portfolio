@@ -1,6 +1,5 @@
 "use client";
-
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
@@ -12,7 +11,6 @@ const Navbar = () => {
       const sections = ["hero", "sobre-mi", "proyectos", "contacto"];
       const scrollPosition = window.scrollY + 100;
 
-      // Detectar si se ha hecho scroll
       setScrolled(window.scrollY > 20);
 
       for (const section of sections) {
@@ -30,7 +28,7 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial position
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -63,7 +61,6 @@ const Navbar = () => {
         >
           Inicio
         </button>
-        
         <button
           onClick={() => scrollToSection("sobre-mi")}
           className={`px-2 py-2 text-xs font-medium tracking-wide uppercase transition-colors duration-200 ${
@@ -74,7 +71,6 @@ const Navbar = () => {
         >
           Sobre Mí
         </button>
-        
         <button
           onClick={() => scrollToSection("proyectos")}
           className={`px-2 py-2 text-xs font-medium tracking-wide uppercase transition-colors duration-200 ${
@@ -85,7 +81,6 @@ const Navbar = () => {
         >
           Proyectos
         </button>
-        
         <button
           onClick={() => scrollToSection("contacto")}
           className={`px-2 py-2 text-xs font-medium tracking-wide uppercase transition-colors duration-200 ${
@@ -96,11 +91,7 @@ const Navbar = () => {
         >
           Contacto
         </button>
-
-        {/* Separador */}
         <div className="w-px h-4 bg-white/30 mx-2"></div>
-
-        {/* Botón de cambio de idioma */}
         <button
           onClick={toggleLanguage}
           className="px-2 py-2 text-xs font-medium tracking-wide uppercase text-white/80 hover:text-white transition-colors duration-200 border border-white/30 rounded hover:border-white/50"

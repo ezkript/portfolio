@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 
 const HeroCode = () => {
   return (
@@ -10,7 +11,6 @@ const HeroCode = () => {
           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
           <span className="text-gray-400 text-sm ml-2">portfolio.ts</span>
         </div>
-        
         <div className="space-y-2 text-sm">
           <div className="flex">
             <span className="text-gray-500 mr-4">1</span>
