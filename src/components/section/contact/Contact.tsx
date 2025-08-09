@@ -118,7 +118,7 @@ const Contact = () => {
       >
         <LightEffects variant="section" colorScheme="blue" />
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
             <div className="w-8 h-8 md:w-12 md:h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
@@ -129,7 +129,7 @@ const Contact = () => {
               <Phone className="w-4 h-4 md:w-6 md:h-6 text-blue-400" />
             </div>
           </div>
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-6">
             {contactData.subtitle}
           </p>
         </div>

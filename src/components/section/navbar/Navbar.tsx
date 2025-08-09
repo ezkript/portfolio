@@ -51,7 +51,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 h-20 flex items-center px-4 md:px-6">
+    <nav className="navbar-original-font fixed top-0 left-0 right-0 z-50 h-20 flex items-center px-6 md:px-8 lg:px-12">
       {/* Desktop Menu - Centered */}
       <div className="hidden md:flex items-center justify-center flex-1">
         <div className={`flex items-center space-x-2 px-6 py-3 rounded-full transition-all duration-300 ${

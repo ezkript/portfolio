@@ -74,7 +74,7 @@ const Projects = () => {
       >
         <LightEffects variant="section" colorScheme="blue" />
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
             <div className="w-8 h-8 md:w-12 md:h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
@@ -85,11 +85,11 @@ const Projects = () => {
               <Sparkles className="w-4 h-4 md:w-6 md:h-6 text-blue-400" />
             </div>
           </div>
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-6">
             {projectsData.subtitle}
           </p>
         </div>
-        <div className="flex justify-center mb-8 md:mb-12 px-4">
+        <div className="flex justify-center mb-8 md:mb-12 px-6">
           <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-1.5 md:p-2 border border-gray-700/50 w-full max-w-full md:max-w-md md:min-w-[400px]">
             <div className="flex gap-1 md:gap-2">
               {categories.map((category) => (
@@ -206,7 +206,7 @@ const Projects = () => {
             </div>
           ))}
         </div>
-        <div className="text-center px-4">
+        <div className="text-center px-6">
           <div className="bg-gradient-to-r from-blue-900/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-blue-700/30">
             <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">{projectsData.ctaSection.title}</h3>
             <p className="text-gray-300 mb-4 md:mb-6 max-w-2xl mx-auto text-sm md:text-base">

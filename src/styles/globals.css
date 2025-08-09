@@ -13,6 +13,37 @@
   }
 }
 
+/* Estilos para preservar tamaños de fuente originales en navbar */
+@layer components {
+  .navbar-original-font {
+    font-size: inherit !important;
+  }
+  
+  .navbar-original-font .text-xs {
+    font-size: 0.75rem !important; /* 12px original */
+  }
+  
+  .navbar-original-font .text-sm {
+    font-size: 0.875rem !important; /* 14px original */
+  }
+  
+  .navbar-original-font .text-base {
+    font-size: 1rem !important; /* 16px original */
+  }
+  
+  .navbar-original-font .text-lg {
+    font-size: 1.125rem !important; /* 18px original */
+  }
+  
+  .navbar-original-font .text-xl {
+    font-size: 1.25rem !important; /* 20px original */
+  }
+  
+  .navbar-original-font .text-2xl {
+    font-size: 1.5rem !important; /* 24px original */
+  }
+}
+
 /* Animaciones lentas personalizadas */
 @keyframes slow-pulse {
   0%, 100% {

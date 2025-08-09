@@ -20,7 +20,7 @@ const About = () => {
       >
         <LightEffects variant="section" colorScheme="blue" />
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">

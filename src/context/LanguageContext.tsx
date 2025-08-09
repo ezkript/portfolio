@@ -48,7 +48,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       
       // About
       'about.title': 'Sobre Mí',
-      'about.subtitle': 'Backend developer. Me gusta resolver problemas y escribir código que funcione bien.',
+      'about.subtitle': 'Full Stack Developer. Me gusta resolver problemas y mantenerme actualizado con las nuevas tecnologías.',
       'about.education.title': 'Educación',
       'about.education.degree': 'Ingeniería en Sistemas de Información',
       'about.education.institution': 'Universidad Tecnológica Nacional',
@@ -173,7 +173,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       
       // About
       'about.title': 'About Me',
-      'about.subtitle': 'Backend developer. I like solving problems and writing code that works well.',
+      'about.subtitle': 'Full Stack Developer. I like solving problems and keeping up to date with new technologies.',
       'about.education.title': 'Education',
       'about.education.degree': 'Information Systems Engineering',
       'about.education.institution': 'National Technological University',

@@ -17,7 +17,7 @@ const Hero = () => {
       >
         <LightEffects variant="hero" colorScheme="mixed" />
       </div>
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <HeroContent />
           <HeroCode />
