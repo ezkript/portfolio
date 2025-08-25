@@ -3,10 +3,12 @@ import React, { useState, useMemo } from "react";
 import LightEffects from "@/components/global/lighteffects/LightEffects";
 import { useParallax } from "@/hooks/useParallax";
 import { Calendar, Sparkles, Filter } from "lucide-react";
-import { Github, X, Eye, Lock, Code2 } from "lucide-react";
+import { Github, X, Eye, Lock, Code2, Images } from "lucide-react";
 import Image from "next/image";
 import { getProjectsData } from "./Projects.helper";
 import { useLanguage } from "@/context/LanguageContext";
+import { ProjectGallery } from "./ProjectGallery";
+import { Project } from "./Projects.types";
 
 const Projects = () => {
   const scrollY = useParallax();
@@ -14,6 +16,15 @@ const Projects = () => {
   const [notification, setNotification] = useState<{ show: boolean; message: string }>({ 
     show: false, 
     message: "" 
+  });
+  const [galleryState, setGalleryState] = useState<{
+    isOpen: boolean;
+    images: string[];
+    projectTitle: string;
+  }>({
+    isOpen: false,
+    images: [],
+    projectTitle: "",
   });
   const { t } = useLanguage();
   const projectsData = getProjectsData(t);
@@ -42,6 +53,24 @@ const Projects = () => {
     } else {
       window.open(githubUrl, "_blank");
     }
+  };
+
+  const handleOpenGallery = (project: Project) => {
+    if (project.galleryImages && project.galleryImages.length > 0) {
+      setGalleryState({
+        isOpen: true,
+        images: project.galleryImages,
+        projectTitle: project.title,
+      });
+    }
+  };
+
+  const handleCloseGallery = () => {
+    setGalleryState({
+      isOpen: false,
+      images: [],
+      projectTitle: "",
+    });
   };
 
   return (
@@ -146,6 +175,8 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gray-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 md:gap-4">
                   <a
                     href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-2.5 md:p-3 bg-blue-600 rounded-full text-white hover:bg-blue-700 transition-colors duration-200 transform hover:scale-110"
                   >
                     <Eye className="w-4 h-4 md:w-5 md:h-5" />
@@ -160,6 +191,15 @@ const Projects = () => {
                   >
                     <Github className="w-4 h-4 md:w-5 md:h-5" />
                   </button>
+                  {project.galleryImages && project.galleryImages.length > 0 && (
+                    <button
+                      onClick={() => handleOpenGallery(project)}
+                      className="p-2.5 md:p-3 bg-purple-600 rounded-full text-white hover:bg-purple-700 transition-colors duration-200 transform hover:scale-110"
+                      title="Ver galería"
+                    >
+                      <Images className="w-4 h-4 md:w-5 md:h-5" />
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="p-4 md:p-6">
@@ -226,6 +266,12 @@ const Projects = () => {
           </div>
         </div>
       </div>
+      <ProjectGallery
+        isOpen={galleryState.isOpen}
+        onClose={handleCloseGallery}
+        images={galleryState.images}
+        projectTitle={galleryState.projectTitle}
+      />
     </section>
   );
 };

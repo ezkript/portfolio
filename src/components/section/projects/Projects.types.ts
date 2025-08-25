@@ -1,10 +1,11 @@
-interface Project {
+export interface Project {
   id: number;
   title: string;
   subtitle: string;
   description: string;
   image: string;
   staticImage?: string;
+  galleryImages?: string[];
   technologies: string[];
   category: "fullstack" | "frontend" | "backend";
   status: "Activo" | "Completado" | "En Desarrollo";
@@ -33,4 +34,11 @@ export interface ProjectsData {
       contact: string;
     };
   };
+}
+
+export interface ProjectGalleryProps {
+  isOpen: boolean;
+  onClose: () => void;
+  images: string[];
+  projectTitle: string;
 }
