@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { SiMongodb, SiNextdotjs, SiTailwindcss, SiGit } from "react-icons/si";
-import { SiReact, SiNodedotjs, SiTypescript, SiDocker } from "react-icons/si";
+import { SiMongodb, SiNextdotjs, SiTailwindcss, SiExpress } from "react-icons/si";
+import { SiReact, SiNodedotjs, SiTypescript, SiPostgresql } from "react-icons/si";
 import { HiFolder, HiDownload } from "react-icons/hi";
 import { CheckCircle, X } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -49,14 +49,14 @@ const HeroContent = () => {
   };
 
   const technologies = [
-    { icon: SiReact, name: "React", color: "text-blue-400", delay: 0 },
-    { icon: SiNodedotjs, name: "Node.js", color: "text-green-500", delay: 100 },
     { icon: SiTypescript, name: "TypeScript", color: "text-blue-600", delay: 200 },
-    { icon: SiMongodb, name: "MongoDB", color: "text-green-600", delay: 300 },
+    { icon: SiReact, name: "React", color: "text-blue-400", delay: 0 },
     { icon: SiNextdotjs, name: "Next.js", color: "text-gray-300", delay: 400 },
+    { icon: SiNodedotjs, name: "Node.js", color: "text-green-500", delay: 100 },
+    { icon: SiPostgresql, name: "PostgreSQL", color: "text-blue-500", delay: 700 },
+    { icon: SiMongodb, name: "MongoDB", color: "text-green-600", delay: 300 },
     { icon: SiTailwindcss, name: "Tailwind", color: "text-cyan-400", delay: 500 },
-    { icon: SiGit, name: "Git", color: "text-orange-500", delay: 600 },
-    { icon: SiDocker, name: "Docker", color: "text-blue-500", delay: 700 }
+    { icon: SiExpress, name: "Express.js", color: "text-black", delay: 600 }
   ];
 
   return (

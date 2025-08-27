@@ -5,7 +5,6 @@ export const getContactData = (t: (key: string) => string): ContactData => ({
     subtitle: t('contact.subtitle'),
     contactInfo: {
       email: "gonzalobalboadev@gmail.com",
-      phone: "+54 9 3865 75-3085",
       location: "Tucumán, Argentina",
       availability: t('contact.info.availability.text')
     },

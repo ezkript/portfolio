@@ -171,17 +171,6 @@ const Contact = () => {
                 <div className="group flex items-start space-x-3 md:space-x-4 p-3 md:p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
                   <div className="flex-shrink-0">
                     <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-500/20 rounded-full flex items-center justify-center group-hover:bg-blue-500/30 transition-colors duration-300">
-                      <Phone className="h-4 w-4 md:h-5 md:w-5 text-blue-400" />
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-base md:text-lg font-medium text-white mb-1">{t('contact.info.phone')}</h4>
-                    <p className="text-sm md:text-base text-blue-300">{contactData.contactInfo.phone}</p>
-                  </div>
-                </div>
-                <div className="group flex items-start space-x-3 md:space-x-4 p-3 md:p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
-                  <div className="flex-shrink-0">
-                    <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-500/20 rounded-full flex items-center justify-center group-hover:bg-blue-500/30 transition-colors duration-300">
                       <MapPin className="h-4 w-4 md:h-5 md:w-5 text-blue-400" />
                     </div>
                   </div>

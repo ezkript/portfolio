@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Gonzalo Balboa - Portfolio",
-  description: "Portfolio personal de desarrollo web",
+  description: "Portfolio personal de desarrollo web de Gonzalo Balboa",
   manifest: "/site.webmanifest",
   icons: {
     icon: '/favicon.ico',

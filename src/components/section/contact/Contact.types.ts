@@ -1,6 +1,5 @@
 interface ContactInfo {
   email: string;
-  phone: string;
   location: string;
   availability: string;
 }
