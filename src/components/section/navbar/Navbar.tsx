@@ -1,12 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../../context/LanguageContext";
+import { useGoogleAnalytics } from "@/hooks/useGoogleAnalytics";
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { trackEvent } = useGoogleAnalytics();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +38,8 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    trackEvent('navigation_click', 'navbar', sectionId);
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -43,6 +47,7 @@ const Navbar = () => {
   };
 
   const toggleLanguage = () => {
+    trackEvent('language_change', 'navbar', language === "es" ? "en" : "es");
     setLanguage(language === "es" ? "en" : "es");
   };
 
@@ -52,7 +57,6 @@ const Navbar = () => {
 
   return (
     <nav className="navbar-original-font fixed top-0 left-0 right-0 z-50 h-20 flex items-center px-6 md:px-8 lg:px-12">
-      {/* Desktop Menu - Centered */}
       <div className="hidden md:flex items-center justify-center flex-1">
         <div className={`flex items-center space-x-2 px-6 py-3 rounded-full transition-all duration-300 ${
           scrolled 
@@ -108,8 +112,6 @@ const Navbar = () => {
         </button>
         </div>
       </div>
-
-      {/* Mobile Menu Button - Right aligned */}
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="md:hidden ml-auto flex items-center justify-center w-10 h-10 rounded-lg bg-black/20 backdrop-blur-md border border-white/10 hover:bg-black/30 transition-all duration-300"
@@ -120,8 +122,6 @@ const Navbar = () => {
           <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
         </div>
       </button>
-
-      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={closeMenu}>
           <div className="absolute top-20 right-4 w-64 bg-gray-900/95 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>

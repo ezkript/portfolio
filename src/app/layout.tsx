@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import { LanguageProvider } from "../context/LanguageContext";
+import GoogleAnalytics from "../components/global/analytics/GoogleAnalytics";
+import PageTracker from "../components/global/analytics/PageTracker";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +30,10 @@ export default function RootLayout({
         <LanguageProvider>
           <main>{children}</main>
         </LanguageProvider>
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
+        <PageTracker />
       </body>
     </html>
   );

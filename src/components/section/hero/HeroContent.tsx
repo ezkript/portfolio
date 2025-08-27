@@ -5,6 +5,7 @@ import { SiReact, SiNodedotjs, SiTypescript, SiDocker } from "react-icons/si";
 import { HiFolder, HiDownload } from "react-icons/hi";
 import { CheckCircle, X } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useGoogleAnalytics } from "@/hooks/useGoogleAnalytics";
 
 const HeroContent = () => {
   const [notification, setNotification] = useState<{ show: boolean; message: string }>({ 
@@ -12,9 +13,12 @@ const HeroContent = () => {
     message: "" 
   });
   const { t } = useLanguage();
+  const { trackEvent } = useGoogleAnalytics();
 
   const handleDownloadCV = () => {
     try {
+      trackEvent('download', 'content', 'cv_pdf');
+      
       const link = document.createElement('a');
       link.href = '/cv.pdf';
       link.download = 'GonzaloBalboa_DesarrolladorFullStack.pdf';
@@ -32,6 +36,7 @@ const HeroContent = () => {
       }, 4000);
     } catch (error) {
       console.error("Error al descargar CV:", error);
+      trackEvent('download_error', 'content', 'cv_pdf');
       setNotification({
         show: true,
         message: t('hero.cv.error')
@@ -109,6 +114,7 @@ const HeroContent = () => {
       <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
         <button 
           onClick={() => {
+            trackEvent('navigation_click', 'hero', 'projects_scroll');
             const element = document.getElementById("proyectos");
             if (element) {
               element.scrollIntoView({ behavior: "smooth" });

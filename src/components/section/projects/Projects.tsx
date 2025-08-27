@@ -9,9 +9,11 @@ import { getProjectsData } from "./Projects.helper";
 import { useLanguage } from "@/context/LanguageContext";
 import { ProjectGallery } from "./ProjectGallery";
 import { Project } from "./Projects.types";
+import { useGoogleAnalytics } from "@/hooks/useGoogleAnalytics";
 
 const Projects = () => {
   const scrollY = useParallax();
+  const { trackEvent } = useGoogleAnalytics();
   const [activeFilter, setActiveFilter] = useState("all");
   const [notification, setNotification] = useState<{ show: boolean; message: string }>({ 
     show: false, 
@@ -40,8 +42,15 @@ const Projects = () => {
     ? projects 
     : projects.filter(project => project.category === activeFilter);
 
+  const handleFilterChange = (filterId: string) => {
+    setActiveFilter(filterId);
+    trackEvent('filter_change', 'projects', filterId);
+  };
+
   const handleGithubClick = (githubUrl: string, projectTitle: string) => {
     if (githubUrl === "private") {
+      trackEvent('project_click', 'projects', `${projectTitle}_private_repo`);
+      
       setNotification({
         show: true,
         message: projectsData.notificationMessage.replace("{projectTitle}", projectTitle)
@@ -51,12 +60,15 @@ const Projects = () => {
         setNotification({ show: false, message: "" });
       }, 4000);
     } else {
+      trackEvent('project_click', 'projects', `${projectTitle}_github`);
       window.open(githubUrl, "_blank");
     }
   };
 
   const handleOpenGallery = (project: Project) => {
     if (project.galleryImages && project.galleryImages.length > 0) {
+      trackEvent('gallery_open', 'projects', project.title);
+      
       setGalleryState({
         isOpen: true,
         images: project.galleryImages,
@@ -66,11 +78,18 @@ const Projects = () => {
   };
 
   const handleCloseGallery = () => {
+    trackEvent('gallery_close', 'projects', galleryState.projectTitle);
+    
     setGalleryState({
       isOpen: false,
       images: [],
       projectTitle: "",
     });
+  };
+
+  const handleLiveDemoClick = (demoUrl: string, projectTitle: string) => {
+    trackEvent('project_click', 'projects', `${projectTitle}_live_demo`);
+    window.open(demoUrl, "_blank");
   };
 
   return (
@@ -124,7 +143,7 @@ const Projects = () => {
               {categories.map((category) => (
                 <button
                   key={category.id}
-                  onClick={() => setActiveFilter(category.id)}
+                  onClick={() => handleFilterChange(category.id)}
                   className={`flex-1 px-2 md:px-4 py-2 md:py-3 rounded-xl text-xs md:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-1 md:gap-2 ${
                     activeFilter === category.id
                       ? "bg-blue-600 text-white shadow-lg transform scale-105"
@@ -177,6 +196,7 @@ const Projects = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleLiveDemoClick(project.demo, project.title)}
                     className="p-2.5 md:p-3 bg-blue-600 rounded-full text-white hover:bg-blue-700 transition-colors duration-200 transform hover:scale-110"
                   >
                     <Eye className="w-4 h-4 md:w-5 md:h-5" />
@@ -255,6 +275,7 @@ const Projects = () => {
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
               <button
                 onClick={() => {
+                  trackEvent('cta_click', 'projects', 'contact_scroll');
                   const element = document.getElementById("contacto");
                   if (element) element.scrollIntoView({ behavior: "smooth" });
                 }}

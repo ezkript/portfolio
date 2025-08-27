@@ -7,10 +7,12 @@ import { useParallax } from "@/hooks/useParallax";
 import { sendContactEmail, validateEmailConfig, type ContactFormData } from "@/services/emailService";
 import { getContactData } from "./Contact.helper";
 import { useLanguage } from "@/context/LanguageContext";
+import { useGoogleAnalytics } from "@/hooks/useGoogleAnalytics";
 
 const Contact = () => {
   const scrollY = useParallax();
   const { t } = useLanguage();
+  const { trackEvent } = useGoogleAnalytics();
   const contactData = getContactData(t);
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
@@ -28,18 +30,25 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    trackEvent('form_submit', 'contact', 'contact_form');
+    
     try {
       if (!validateEmailConfig()) {
+        trackEvent('form_error', 'contact', 'config_error');
         throw new Error(t('contact.form.error.config'));
       }
 
       if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+        trackEvent('form_error', 'contact', 'validation_error');
         throw new Error(t('contact.form.error.required'));
       }
 
       const success = await sendContactEmail(formData);
       
       if (success) {
+        // Track successful form submission
+        trackEvent('form_success', 'contact', 'email_sent');
+        
         setNotification({
           show: true,
           message: t('contact.form.success'),
@@ -51,6 +60,7 @@ const Contact = () => {
           setNotification({ show: false, message: "", type: "success" });
         }, 5000);
       } else {
+        trackEvent('form_error', 'contact', 'send_error');
         throw new Error(t('contact.form.error.send'));
       }
     } catch (error) {
@@ -74,6 +84,10 @@ const Contact = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleSocialClick = (platform: string) => {
+    trackEvent('social_click', 'contact', platform);
   };
 
   return (
@@ -203,6 +217,7 @@ const Contact = () => {
                     href={social.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
+                    onClick={() => handleSocialClick(social.name.toLowerCase())}
                     className="group flex items-center space-x-3 md:space-x-4 p-3 md:p-4 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:bg-gray-800/50"
                   >
                     <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors duration-300 ${
