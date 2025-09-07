@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import { LanguageProvider } from "../context/LanguageContext";
 import GoogleAnalytics from "../components/global/analytics/GoogleAnalytics";
 import PageTracker from "../components/global/analytics/PageTracker";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
           <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         )}
         <PageTracker />
+        <SpeedInsights />
       </body>
     </html>
   );
